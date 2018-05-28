@@ -1,0 +1,412 @@
+
+.py --oauth2 update freelancerver1/
+
+Above is a command to update my application
+
+
+The Datatype unit can both save to the datastore and read from the user interface.
+
+Extra notes on the Affiliate Marketing Program desing can be found on the related file within this project.
+
+
+Personal Information Interface Design
+
+Notes about what should be included.
+
+(The Personal Information Interface system will affect the desing of other modules as it won't be necessary to login
+in those modules)
+(the Personal information interface can just check if a certain user has rights to access a certain module and either allow
+access or refuse)
+
+Introduction Screen
+Acting as an informational screen of the whole app.
+i should consider including an animation or a very good looking graphic.
+(animated text about what the application does and the benefits to users)
+
+Links to the Login Screen
+Links to account Creation Screen
+Links to more information on:
+1. Freelance Jobs.
+2. Normal Jobs.
+3. Affiliate Marketing Programs.
+4. Market Place (Allowing Users to sell everything they can)
+
+1.1 Freelance Jobs info Screen.
+
+Presents links to informational documents on freelance jobs.
+Presents links to how to documents.
+
+2.1 Normal Jobs Info Screen.
+Informational Documents.
+How to Documents.
+
+3.1 Affiliate Marketing Informational Screen.
+Info Docs
+How to Docs.
+
+
+After Login.
+
+Links to all the sections a user has rights to access.
+that is.
+Freelance Jobs.
+Normal Jobs.
+Affiliate Marketing Programs.
+
+
+After Login.
+
+Freelance Jobs Screen
+
+Freelance Projects you are working on.
+Public Freelance Projects.
+Private Freelance Projects.
+
+
+
+old post login handler
+
+    def post (self):
+
+        #i can check the built in user object to see if the user has already loggedin and if that is the case automatically
+        #login the user. if that is not the case then allow the user to make use of the form below to login
+        #if the user has succesfully logged we can then accept that users password and login name and create a user object.
+        #we also populate the Reference Object with the info we find from this user.
+
+
+
+
+        #Getting Username and password from the user form
+        acct = self.request.get('Username')
+        pw = self.request.get('Password')
+        verEmail = self.request.get('VerEmail')
+
+
+        if(pw == '' or acct == '') or (pw =='Password' or acct=='Username') or (verEmail==''):
+            doRender(self,'loginscreen.html',{'errorMessage': 'Please Specify Username and Password and Verification Email to Login', 'notloggedin' : 'YES'})
+        else:
+            Guser = users.User(verEmail)
+
+            result = User.getReferenceByUsername(acct)
+            #if (not(result == undefined) and not(result == User._generalError) and not(result == User._userNameDonotExist)):
+            if not(User._pkeyvalue == undefined): #if pkeyvalue is set then everything is alright
+                #testing
+                #Revise the section below to only allow login
+                if pw == result.readPassword():
+                    #Create session and store it in MemCache it will indicate that i hvae logged in
+                    doRender(self,'index.html', {'user': acct})
+                else:
+                    doRender(self,'loginscreen.html',{'errorMessage': 'Wrong Password Please Note that Passwords and Usernames are case sensitive'})
+            else:
+                doRender(self,'loginscreen.html', {'errorMessage': 'Wrong Username if you do not have an account here please create a new account thank you'})
+
+
+
+
+
+
+
+
+
+the code for the logout handler
+
+
+class LogOut(webapp2.RequestHandler):
+    def get(self):
+        self.session = Session()
+        self.session.delete_item('user')
+        self.redirect('/')
+
+
+
+Code for the main handler
+
+class MainPage(webapp2.RequestHandler):
+    def get(self):
+        self.session = Session()
+        logging.info('Main page fired up')
+        if 'user' in self.session:
+            user = self.session['user']
+        else:
+            user = None
+
+        template_values = {
+            'user': user
+            }
+        template = jinja_environment.get_template('main.html')
+        self.response.out.write(template.render(template_values))
+
+
+
+   Code for the main template
+
+   {% if user %}
+      <p>Welcome, {{user}}</p>
+  {% endif %}
+
+
+
+
+
+  old country code
+
+  ######################################################################################################################
+#UTILITY FUNCTIONS
+######################################################################################################################
+class Country ():
+
+    def verifyCountry (self, strinput):
+        CountryList = ('Afghanistan','Akrotiri','Albania','Algeria','American Samoa','Andorra','Angola','Anguilla',
+                   'Antarctica','Antigua and Barbuda','Argentina','Armenia','Aruba','Ashmore and Cartier Islands',
+                   'Australia','Austria','Azerbaijan','Bahamas','Bahrain','Bangladesh','Barbados','Bassas da India',
+                   'Belarus','Belgium','Belize','Benin','Bermuda','Bhutan','Bolivia','Bosnia','Herzegovina',
+                   'Botswana','Bouvet Island','Brazil','British Indian Ocean Territory','British Virgin Islands',
+                   'Brunei','Bulgaria','Burkina Faso','Burma','Burundi','Cambodia','Cameroon','Canada','Cape Verde',
+                   'Cayman Islands','Central African Republic','Chad','Chile','China','Christmas Island',
+                   'Clipperton Island','Cocos (Keeling) Islands','Colombia','Comoros','Democratic Republic of the Congo',
+                   'Cook Islands','Coral Sea Islands','Costa Rica','Ivory Coast','Croatia','Cuba','Cyprus',
+                   'Czech Republic','Denmark','Dhekelia','Djibouti','Dominica','Dominican Republic','Ecuador','Egypt',
+                   'El Salvador','Equatorial Guinea','Eritrea','Estonia','Ethiopia','Europa Island','Falkland Islands',
+                   'Faroe Islands','Fiji','Finland','France','French Guiana','French Polynesia',
+                   'French Southern and Antarctic Lands','Gabon','The Gambia','Gaza Strip','Georgia','Germany','Ghana',
+                   'Gibraltar','Glorioso Islands','Greece','Greenland','Grenada','Guadeloupe','Guam','Guatemala','Guernsey',
+                   'Guinea','Guinea-Bissau','Guyana','Haiti','Heard Island and McDonald Islands','Vatican City','Honduras',
+                   'Hong Kong','Hungary','Iceland','India','Indonesia','Iran','Iraq','Ireland','Isle of Man','Israel',
+                   'Italy','Jamaica','Jan Mayen','Japan','Jersey','Jordan','Juan de Nova Island','Kazakhstan','Kenya',
+                   'Kiribati','North Korea','South Korea','Kuwait','Kyrgyzstan','Laos','Latvia','Lebanon','Lesotho',
+                   'Liberia','Libya','Liechtenstein','Lithuania','Luxembourg','Macau','Macedonia','Madagascar',
+                   'Malawi','Malaysia','Maldives','Mali','Malta','Marshall Islands','Martinique','Mauritania',
+                   'Mauritius','Mayotte','Mexico','Micronesia','Moldova','Monaco','Mongolia','Montserrat','Morocco',
+                   'Mozambique','Namibia','Nauru','Navassa Island','Nepal','Netherlands','Netherlands Antilles',
+                   'New Caledonia','New Zealand','Nicaragua','Niger','Nigeria','Niue','Norfolk Island',
+                   'Northern Mariana Islands','Norway','Oman','Pakistan','Palau','Panama','Papua New Guinea',
+                   'Paracel Islands','Paraguay','Peru','Philippines','Pitcairn Islands','Poland','Portugal',
+                   'Puerto Rico','Qatar','Reunion','Romania','Russia','Rwanda','Saint Helena','Saint Kitts and Nevis',
+                   'Saint Lucia','Saint Pierre and Miquelon','Saint Vincent and the Grenadines','Samoa','San Marino',
+                   'Sao Tome and Principe','Saudi Arabia','Senegal','Serbia and Montenegro','Seychelles','Sierra Leone',
+                   'Singapore','Slovakia','Slovenia','Solomon Islands','Somalia','South Africa',
+                   'South Georgia','South Sandwich Islands','Spain','Spratly Islands','Sri Lanka','Sudan','Suriname',
+                   'Svalbard','Swaziland','Sweden','Switzerland','Syria','Taiwan','Tajikistan','Tanzania','Thailand',
+                   'Timor-Leste','Togo','Tokelau','Tonga','Trinidad and Tobago','Tromelin Island','Tunisia','Turkey',
+                   'Turkmenistan','Turks and Caicos Islands','Tuvalu','Uganda','Ukraine','United Arab Emirates',
+                   'United Kingdom','United States','Uruguay','Uzbekistan','Vanuatu','Venezuela','Vietnam',
+                   'Virgin Islands','Wake Island','Wallis and Futuna','West Bank','Western Sahara','Yemen','Zambia','Zimbabwe ')
+        try:
+            strinput = str(strinput)
+            strinput = strinput.strip()
+            strinput = strinput.title()
+
+            if strinput in CountryList:
+                return True
+            else:
+                return False
+        except:
+            return False
+
+
+
+
+
+datastore example
+
+
+import jinja2
+import os
+import webapp2
+from google.appengine.api import users
+from google.appengine.ext import blobstore
+from google.appengine.ext import db
+from google.appengine.ext.webapp import blobstore_handlers
+template_env = jinja2.Environment(
+loader=jinja2.FileSystemLoader(os.getcwd()))
+
+class UserUpload(db.Model):
+    user = db.UserProperty()
+    description = db.StringProperty()
+    blob = blobstore.BlobReferenceProperty()
+
+class MainPage(webapp2.RequestHandler):
+    def get(self):
+        user = users.get_current_user()
+        login_url = users.create_login_url(self.request.path)
+        logout_url = users.create_logout_url(self.request.path)
+
+        uploads = None
+
+        if user:
+            q = UserUpload.all()
+            q.filter('user =', user)
+            q.ancestor(db.Key.from_path('UserUploadGroup', user.email()))
+            uploads = q.fetch(100)
+
+            upload_url = blobstore.create_upload_url('/upload')
+
+            template = template_env.get_template('home.html')
+
+            context = {
+                        'user': user,
+                        'login_url': login_url,
+                        'logout_url': logout_url,
+                        'uploads': uploads,
+                        'upload_url': upload_url,
+                        }
+
+            self.response.write(template.render(context))
+
+
+class UploadHandler(blobstore_handlers.BlobstoreUploadHandler):
+    def post(self):
+        user = users.get_current_user()
+        description = self.request.params['description']
+        for blob_info in self.get_uploads('upload'):
+            upload = UserUpload(parent=db.Key.from_path('UserUploadGroup', user.email()),user=user,description=description,blob=blob_info.key())
+
+            upload.put()
+        self.redirect('/')
+
+class ViewHandler(blobstore_handlers.BlobstoreDownloadHandler):
+    def get(self):
+        user = users.get_current_user()
+        upload_key_str = self.request.params.get('key')
+        upload = None
+
+        if upload_key_str:
+            upload = db.get(upload_key_str)
+
+        if (not user or not upload or upload.user != user):
+            self.error(404)
+            return
+
+        self.send_blob(upload.blob)
+
+class DeleteHandler(webapp2.RequestHandler):
+    def post(self):
+        user = users.get_current_user()
+        if user:
+            entities_to_delete = []
+            for delete_key in self.request.params.getall('delete'):
+                upload = db.get(delete_key)
+                if upload.user != user:
+                    continue
+                entities_to_delete.append(upload.key())
+                entities_to_delete.append(db.Key.from_path('__BlobInfo__', str(upload.blob.key())))
+
+            db.delete(entities_to_delete)
+
+        self.redirect('/')
+
+
+application = webapp2.WSGIApplication([('/', MainPage), ('/upload', UploadHandler), ('/view', ViewHandler),('/delete', DeleteHandler)], debug=True)
+
+
+
+
+home.html
+
+
+<title>Blobstore Demo</title>
+</head>
+<body>
+{% if user %}
+<p>Welcome, {{ user.email() }}! You can <a href="{{ logout_url }}">sign out</a>.</p>
+{% if uploads %}
+<form action="/delete" method="post">
+<p>Your uploads:</p>
+<ul>
+{% for upload in uploads %}
+<li>
+<input type="checkbox" name="delete" value="{{ upload.key() }}" />
+{{ upload.description }}:
+<a href="/view?key={{ upload.key() }}">{{ upload.blob.filename }}</a>
+</li>
+{% endfor %}
+</ul>
+<input type="submit" value="Delete Selected" />
+</form>
+{% else %} {# User has no uploads. #}
+<p>You have no uploads.</p>
+{% endif %}
+<p>Upload files:</p>
+<form action="{{ upload_url }}" method="post" enctype="multipart/form-data">
+<label for="description">Description:</label>
+<input type="text" name="description" id="description" /><br />
+<label for="upload">File:</label>
+<input type="file" name="upload" id="upload" multiple="true" /><br />
+<input type="submit" value="Upload File" />
+</form>
+{% else %} {# User is not signed in. #}
+<p>Welcome! Please
+<a href="{{ login_url }}">sign in or register</a> to upload files.</p>
+{% endif %}
+            <div class="ui-icon-print">
+                Freelancing Solutions App enables users to find Jobs Online.
+            </div>
+</body>
+</html>
+
+
+
+app.yaml
+
+application: blobstore
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: yes
+handlers:
+- url: .*
+script: main.application
+libraries:
+- name: webapp2
+version: "2.5.1"
+- name: jinja2
+
+
+
+
+
+AJAX AUTO LOADERS
+
+function updateMsg() {
+R.ajax({
+url: "/fjobslist",
+cache: false,
+success: function(html){
+R("#FreeJobsList").html(html);
+}
+});
+setTimeout('updateMsg()', 10000);
+}
+updateMsg();
+
+function updateEmployerJobs(){
+R.ajax({
+url: "/femployerJobList",
+cache: false,
+success: function(html){
+R("#EmployerJobsList").html(html);
+}
+});
+setTimeout('updateEmployerJobs()', 50000);
+}
+updateEmployerJobs()
+
+
+Twitter freelancing solutions app
+
+Consumer Key (API Key) Z5OBHoTagvRqfo4HcFwzHDAqF
+Consumer Secret (API Secret) l82wzMmc7E0JwIPUJDirccv34f3PduXlZiBWgvhbRVSgTD1FPL
+Access Level Read, write, and direct messages (modify app permissions)
+Owner blueitserver
+Owner ID 1585367040
+Application Actions
+Regenerate Consumer Key and SecretChange App Permissions
+Your Access Token
+This access token can be used to make API requests on your own account's behalf. Do not share your access token secret with anyone.
+Access Token 1585367040-dSpu8oFY9mXdv0twAtkOjyBpCyzKmKAHwfRX5S8
+Access Token Secret odHeYbMuugRWafkVexOAfDus1nZxeumganHXwYYdcmhDC
+Access Level Read, write, and direct messages
+Owner blueitserver
+Owner ID 1585367040
+Token Actions
+Regenerate My Access Token and Token SecretRevoke Token Access

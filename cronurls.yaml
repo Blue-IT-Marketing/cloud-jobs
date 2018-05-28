@@ -1,0 +1,26 @@
+handlers:
+- url: /cron/purgefeedback
+  script: main.app
+  login: admin
+- url: /cron/SendNewsLetter
+  script: main.app
+  login: admin
+- url: /_ah/queue/NewsLettersQueue
+  script: main.app
+  login: admin
+- url: /_ah/queue/SendFreelanceJobsQueue
+  script: main.app
+  login: admin
+- url: /cron/SendFreelanceJobsSummary
+  script: main.app
+  login: admin
+- url: /cron/UpdateFaceBookFriends
+  script: main.app
+  login: admin
+- url: /cron/SendVerificationEmail
+  script: main.app
+  login: admin
+- url: /cron/promotionalTweets
+  script: tweety.app
+  login: admin
+

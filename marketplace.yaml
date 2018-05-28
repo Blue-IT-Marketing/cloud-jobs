@@ -1,0 +1,25 @@
+handlers:
+- url: /MarketPlaceBuyerCompleted
+  script: main.app
+  login: required
+- url: /MarketPlaceBuyerProgress
+  script: main.app
+  login: required
+- url: /MarketPlaceBuyerOrders
+  script: main.app
+  login: required
+- url: /MarketPlaceSellerCompleted
+  script: main.app
+  login: required
+- url: /MarketPlaceSellerProgress
+  script: main.app
+  login: required
+- url: /MarketPlaceSellerOrders
+  script: main.app
+  login: required
+- url: /MarketPlaceSellerSubmit
+  script: main.app
+  login: required
+- url: /MarketPlaceCreateShop
+  script: main.app
+  login: required

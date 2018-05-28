@@ -1,0 +1,33 @@
+Getting Access Token
+
+import paypalrestsdk
+paypalrestsdk.configure({
+  'mode': 'sandbox',
+  'client_id': 'AQkquBDf1zctJOWGKWUEtKXm6qVhueUEMvXO_-MCI4DQQ4-LWvkDLIN2fGsd',
+  'client_secret': 'EL1tVxAjhT7cJimnz5-Nsx9k2reTKSVfErNQF-CmrwJgxRtylkGTKlU4RvrX'
+})
+
+
+
+
+Creating a payment
+
+
+payment = paypalrestsdk.Payment({
+  "intent": "sale",
+  "payer": {
+    "payment_method": "paypal" },
+  "redirect_urls": {
+    "return_url": "https://devtools-paypal.com/guide/pay_paypal/python?success=true",
+    "cancel_url": "https://devtools-paypal.com/guide/pay_paypal/python?cancel=true" },
+
+  "transactions": [ {
+    "amount": {
+      "total": "12",
+      "currency": "USD" },
+    "description": "creating a payment" } ] } )
+
+payment.create()
+
+
+

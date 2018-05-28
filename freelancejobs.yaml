@@ -1,0 +1,4 @@
+handlers:
+- url: /employer-submitjobs
+  script: freelancejobs.app
+  login: required

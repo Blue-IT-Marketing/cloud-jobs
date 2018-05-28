@@ -1,0 +1,11 @@
+handlers:
+- url: /ror.xml
+  script: feedsSitemaps.app
+- url: /sitemap.xml
+  script: feedsSitemaps.app
+- url: /feeds/rss
+  script: feedsSitemaps.app
+- url: /robots.txt
+  script: feedsSitemaps.app
+- url: /sitemap.html
+  script: feedsSitemaps.app

@@ -1,0 +1,25 @@
+handlers:
+- url: /JobMarketJobseekersInvitations
+  script: main.app
+  login: required
+- url: /JobMarketJobseekersTests
+  script: main.app
+  login: required
+- url: /JobMarketJobseekersPosts
+  script: main.app
+  login: required
+- url: /JobMarketJobseekersPostcv
+  script: main.app
+  login: required
+- url: /JobMarketEmployersInvite
+  script: main.app
+  login: required
+- url: /JobMarketEmployersReview
+  script: main.app
+  login: required
+- url: /JobMarketEmployersTests
+  script: main.app
+  login: required
+- url: /JobMarketEmployersPostjobs
+  script: main.app
+  login: required

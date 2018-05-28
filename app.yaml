@@ -1,0 +1,61 @@
+application: cloud-job
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: true
+default_expiration: "5d 12h"
+
+includes:
+- staticfiles.yaml # A Yaml File for Static Files
+- members.yaml # a Yaml File for the members section
+- cronurls.yaml # a yaml file for cron urls
+- sitemapsFeeds.yaml # a yaml file for sitemaps and feeds
+- profiles.yaml # a yaml file for profiles
+- freelancejobs.yaml # a yaml file for freelance jobs
+#- affiliates.yaml # a yaml file for affiliates
+- marketplace.yaml # a yaml file for market place
+- jobmarket.yaml # a yaml file for the job market
+- backengine.yaml # a yaml file for control functions and classes
+- blog.yaml # a yaml file for the local blog
+
+handlers:
+
+- url: /index.html
+  script: newmain.app
+- url: /login
+  script: newmain.app
+- url: /logout
+  script: newmain.app
+- url: /register
+  script: newmain.app
+- url: /recover
+  script: newmain.app
+- url: /
+  script: newmain.app
+- url: /.*
+  script: newmain.app
+- url: .*
+  script: newmain.app
+
+
+libraries:
+- name: webapp2
+  version: "2.5.2"
+- name: jinja2
+  version: "latest"
+
+inbound_services:
+- mail
+- warmup
+
+builtins:
+- appstats: on
+- deferred: on
+
+#error_handlers:
+#- file: default_error.html
+
+#- error_code: over_quota
+#  file: over_quota.html
+#- error_code: timeout
+#  file: time_out.html

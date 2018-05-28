@@ -1,0 +1,5 @@
+handlers:
+- url: /blog
+  script: blog.app
+- url: /blog/submit
+  script: blog.app

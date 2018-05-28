@@ -1,0 +1,80 @@
+
+
+
+Variables
+
+vNotifications = the number of notifications for a specific user (activated on login)
+vTasks = The number of tasks a certain user has to complete {activated on login }
+vDisplayname = The display name of the person who is logged in
+Consider using vFirstname & vSurname
+vDateTimeVerified
+vProfession
+vNumMessages
+
+vTotaljobs = total number of jobs available
+vPercentJobCompletion = Total percentage of the jobs actually completed
+vTotalUsers = Total Number of users registered
+vNewusers = New users Registered recently / Week Old
+
+
+
+URLS
+
+/followers
+/myprojects
+/friends
+
+/login
+/members
+/profile
+/about
+
+Browse Sub Menu
+/browse-freelancejobs
+/browse-profiles
+/browse-freelancers
+/browse-employers
+
+Freelancer Sub Menu
+/freelancer-bids
+/freelancer-awarded
+/freelancer-progress
+/freelancer-completed
+/freelancer-testcentre
+/freelancer-subscriptions
+
+
+Employer Sub Menu
+/employer-freelancejobs
+/employer-submitjobs
+/employer-review
+/employer-awarded
+/employer-progress
+/employer-completed
+/employer-subscriptions
+
+
+blog submeneu
+
+/blog
+/blog-articles
+/blog-recentarticles
+/blog-guest-blogging
+
+
+forums submenu
+
+/forum
+/forum-topics
+/forum-register
+/forum-recent
+
+
+contac sub menu
+
+/contact
+/feedback
+/tickets
+
+
+

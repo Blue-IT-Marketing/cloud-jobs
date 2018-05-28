@@ -1,0 +1,21 @@
+cron:
+- description: purge feedback
+  url: /cron/purgefeedback
+  schedule: every day 23:59
+- description: send newsletter
+  url: /cron/SendNewsLetter
+  schedule: every day 07:00
+- description: send freelancejobs summary
+  url: /cron/SendFreelanceJobsSummary
+  schedule: every day 07:30
+- description: Update Facebook Friends List for each user.
+  url: /cron/UpdateFaceBookFriends
+  schedule: every saturday 23:59
+- description: Send Verification Notifications to every user who has not verified their account.
+  url: /cron/SendVerificationEmail
+  schedule: every monday 12:00
+- description: Send Promotional Tweets to twitter every 30 minutes
+  url : /cron/promotionalTweets
+  schedule: every 30 minutes
+
+

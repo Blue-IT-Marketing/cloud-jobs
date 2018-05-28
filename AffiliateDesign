@@ -1,0 +1,91 @@
+Affiliate Marketing Program
+
+Display the menu:
+
+Login:
+LogOff:
+
+Description of how the program works and any other relevant information.
+an ability to create an Affiliate Marketing Website based on WordPress, where the affiliate is able to create the
+marketing materials needed.
+The website could also be hosted in Google for maximum availability
+<======================================================================================================>
+
+
+
+Internal Menu:
+Display Current Balance.
+Account Details Menu
+Affiliate Marketing Agent:
+Affiliate Partner:
+LogOff
+
+<========================================================================================================>
+
+Affiliate Marketing Agent: Menu.
+
+
+Display Tracking Statistics:
+Affiliate Services: {Products and services being promoted by the affiliate and their tracking numbers including their locations by URLS information regarding
+products and services is also displayed here, and the rates you can get for each product and service.
+the ability to create your tracking numbers for the products and services you are going to be able to promote., the ability to browse through the latest products and services
+in our affiliate marketing program}
+Back <---
+LogOff
+
+<=========================================================================================================>
+Affiliate Partner Menu
+Display Tracking Statistics.{able to see the best performing affiliates for each service}
+Affiliate Partner Services {Products and services you have on your store and the descriptions of each product and service and settings
+regarding commissions where they can be promoted, ability to create products and services, and store the details in our central database}
+
+{when creating products and service catalogues the data that is images, text and other information can be stored in Google}
+{The data for display in user websites can be stored in the server that the affiliate marketing URL is hosted on.}
+
+Back <---
+LogOff
+
+
+
+<========================================================================================================>
+Account Details Menu
+
+Display Current Balance.
+Payment Details: {Account Numbers when to execute payout and any info regarding payments will be displayed here}.
+Account Details: {Monthly payments for services including website hosting it requested. details for how the payments are to be made must be included here}.
+Back
+LogOff
+
+
+<=========================================================================================================>
+The Tracking Algorithm
+
+When an incoming request comes in check the request if its an application
+request then show the menu.
+
+else
+if its a tracking URL then display the product being requested and create a log of this request
+with the necessary information.
+
+process the payment request for the user who clicked on the URL being tracked. processing is done through PAYPAL.
+allocate the commissions to the owner of tracking URL, update the stock, update tracking statistics for the affiliate and affiliate partner
+update the affiliate commission(balance), update the affiliate partner commission(balance). update the main system statistics update the main system balance Commission.
+Show the user a message regarding this system and the fact that they can join it.
+Show the user an advert from Google Adsense.
+
+
+
+
+
+
+
+{another thought the payments can also be processed on the affiliates website meaning we can have an affiliate marketing website based on word-press
+with all the data and necessary images for all the services and products, and when a click is made to purchase the tracking URL is activated once the purchase
+goes through a notification is sent to the Google-App, which will then run the updates as Necessary.
+
+then all the affiliates will just get shops that they run and once they activate the payment system they are taken to
+Google-App where they fill in the information as requested and get all the products they can promote. once everything is verified.
+then their system starts running and generate an income for them.
+
+718985233
+

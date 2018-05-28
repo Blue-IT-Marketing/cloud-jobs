@@ -1,0 +1,6 @@
+queue:
+- name: NewsLettersQueue
+  rate: 30/s
+- name: SendFreelanceJobsQueue
+  rate: 180/s
+  bucket_size: 90
